@@ -118,9 +118,11 @@ set(capnproto_PREFIX ${CMAKE_CURRENT_BINARY_DIR}/external/capnproto)
 ExternalProject_Add(
     capnproto
     PREFIX ${capnproto_PREFIX}
-    URL "https://capnproto.org/capnproto-c++-0.5.2.tar.gz"
-    URL_MD5 "84dcb55dba3f60b0f85734fd0e502401"
-    CONFIGURE_COMMAND CXX=${CMAKE_CXX_COMPILER} CC=${CMAKE_C_COMPILER} ${capnproto_PREFIX}/src/capnproto/configure --prefix=${capnproto_PREFIX} --libdir=${capnproto_PREFIX}/lib --enable-shared=no
+    URL "https://codeload.github.com/sandstorm-io/capnproto/tar.gz/v0.5.3"
+    DOWNLOAD_NAME "v0.5.3.tar.gz"
+    URL_MD5 "909bd13ad6b8bc840ac78ab8f5bcb0a4"
+    UPDATE_COMMAND autoreconf -i ${capnproto_PREFIX}/src/capnproto/c++/
+    CONFIGURE_COMMAND CXX=${CMAKE_CXX_COMPILER} CC=${CMAKE_C_COMPILER} ${capnproto_PREFIX}/src/capnproto/c++/configure --prefix=${capnproto_PREFIX} --libdir=${capnproto_PREFIX}/lib --enable-shared=no
     BUILD_COMMAND $(MAKE)
     INSTALL_COMMAND $(MAKE) install
     BUILD_IN_SOURCE 1
